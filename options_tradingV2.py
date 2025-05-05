@@ -46,7 +46,7 @@ def fetch_options_data(ticker, expiration, option_type='call'):
 
     Param:
         ticker (str): Stock symbol (e.g. 'AAPL')
-        expiration (str): Expriation date in 'YYYY-MM-DD' format
+        expiration (str): Expiration date in 'YYYY-MM-DD' format
     
     Returns:
         DataFrame: Calls options data as a pandas DataFrame.
@@ -70,7 +70,7 @@ def compute_sma(options_data, window=5):
         window (int): Number of periods for the moving average.
     
     Returns:
-        DataFrane: Options data with an SMA column.
+        DataFrame: Options data with an SMA column.
     """
     #Ensure data is sorted by an index that reflects order (if applicable)
     options_data = options_data.reset_index(drop=True)
@@ -101,7 +101,7 @@ def generate_signals(options_data, option_type):
 
 def quasi_monte_carlo_call_price(S, K, T, r, sigma, num_simulations=2**14):
     """
-    Estimate European Call option price using Quasi-Monte Carlo simukation with a Sobol sequence.
+    Estimate European Call option price using Quasi-Monte Carlo simulation with a Sobol sequence.
 
     Param:
         S (float): Current price of the underlying asset.
@@ -120,7 +120,7 @@ def quasi_monte_carlo_call_price(S, K, T, r, sigma, num_simulations=2**14):
     samples = sampler.random_base2(m=int(np.log2(num_simulations)))
 
     Z = norm.ppf(samples)
-    Z = Z.flatten() #Flattern into 1-D array
+    Z = Z.flatten() #Flatten into 1-D array
 
     #Simulate terminal asset price using risk-neutral dynamics
     ST = S * np.exp((r - 0.5 * sigma**2) * T + sigma * np.sqrt(T) * Z)
@@ -173,7 +173,7 @@ def quasi_monte_carlo_put_price(S, K, T, r, sigma, num_simulations=2**14):
     put_price = np.mean(discounted_payoffs)
 
     #Calculate risk measure: 95% Value-at-Risk (VaR) of discounted payoff
-    put_var = np.percentile(discounted_payoffs, 5)
+    put_var = np.percentile(discounted_payoffs, 5)          #5 would be for 95% VaR
 
     return put_price, put_var
 
@@ -245,33 +245,33 @@ def evaluate_trade(option_type, market_price, mc_price, var, threshold=0.05, var
         advice = f"Not recommend: {option_type.capitalize()} option doesn't appear significantly undervalued."
     return advice
 
-# def plot_lastprice_and_sma(options_data):
-#     """
-#     Plot the last price and SMA for a visual comparison.
+def plot_lastprice_and_sma(options_data):
+    """
+    Plot the last price and SMA for a visual comparison.
 
-#     Param:
-#         options_data (DataFrame): Options chain data with SMA computed.
-#     """
-#     # plt.figure(figsize=(10,6))
-#     ax.cla()
-#     ax.plot(options_data.index, options_data['lastPrice'], marker='o', label='Last Price')
-#     ax.plot(options_data.index, options_data['SMA'], marker='x', label='SMA')
-#     ax.set_xlabel('Option Index')
-#     ax.set_ylabel('Price')
-#     ax.set_title('Last Price vs SMA for Options')
-#     ax.legend()
-#     ax.grid(True)
-#     plt.draw()
-#     plt.pause(0.1)
+    Param:
+        options_data (DataFrame): Options chain data with SMA computed.
+    """
+    # plt.figure(figsize=(10,6))
+    ax.cla()
+    ax.plot(options_data.index, options_data['lastPrice'], marker='o', label='Last Price')
+    ax.plot(options_data.index, options_data['SMA'], marker='x', label='SMA')
+    ax.set_xlabel('Option Index')
+    ax.set_ylabel('Price')
+    ax.set_title('Last Price vs SMA for Options')
+    ax.legend()
+    ax.grid(True)
+    plt.draw()
+    plt.pause(0.1)
 
 
 def main():
-    tickers_input = input("Enter ticker symbols separated by commes (e.g. AAPL, MSFT) (or press enter for default list): ").strip()
+    tickers_input = input("Enter ticker symbols separated by commas (e.g. AAPL, MSFT) (or press enter for default list): ").strip()
     if tickers_input:
         tickers = [x.strip().upper() for x in tickers_input.split(",")]
     else:
         #Default list
-        tickers = ["AAPL", "AMZN", "GOOGL", "TGT", "TSLA"]
+        tickers = ["AAPL", "AMZN", "TGT", "TSLA"]
     
     
     
@@ -285,8 +285,8 @@ def main():
     # print(opt.puts.head())
     # print(opt.calls.head())
 
-    # plt.ion()
-    # fig, ax = plt.subplots(figsize=(10,6))
+    plt.ion()
+    fig, ax = plt.subplots(figsize=(10,6))
 
     #Set desired multiplier for sell price
     #Change as needed
@@ -416,17 +416,17 @@ def main():
                     print("\nNo bullish put signals found.")
 
                 #Update call options plot for visual reference
-                # if not calls.empty:
-                #     ax.cla()
-                #     ax.plot(calls.index, calls['lastPrice'], marker='o', label='Last Price')
-                #     ax.plot(calls.index, calls['SMA'], marker='x', label='SMA')
-                #     ax.set_xlabel('Option Index')
-                #     ax.set_ylabel('Price')
-                #     ax.set_title('Last Price vs SMA for Options')
-                #     ax.legend()
-                #     ax.grid(True)
-                #     plt.draw()
-                #     plt.pause(0.1)
+                if not calls.empty:
+                    ax.cla()
+                    ax.plot(calls.index, calls['lastPrice'], marker='o', label='Last Price')
+                    ax.plot(calls.index, calls['SMA'], marker='x', label='SMA')
+                    ax.set_xlabel('Option Index')
+                    ax.set_ylabel('Price')
+                    ax.set_title('Last Price vs SMA for Options')
+                    ax.legend()
+                    ax.grid(True)
+                    plt.draw()
+                    plt.pause(0.1)
 
         print("-" * 40)
         #Pause for 60 seconds before next update
