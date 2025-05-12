@@ -1,0 +1,47 @@
+robinhood-algo-trading/
+│
+├── config/
+│   ├── live_config.yml a
+│   ├── paper_config.yml a
+│   └── backtest_config.yml a
+│
+├── core/
+│   ├── __init__.py a
+│   ├── bot.py a
+│   ├── execution.py a
+│   ├── risk_management.py a
+│   ├── pricing_models.py a 
+│   ├── data_handler.py a
+│   ├── safeguards.py a
+│   ├── strategies/
+│   │   ├── __init__.py a
+│   │   ├── iron_condor.py a
+│   │   ├── iron_butterfly.py a
+│   │   └── trend_following.py a
+│   └── utils/
+│       ├── __init__.py
+│       ├── logger.py a
+│       └── helpers.py a
+│
+├── tests/
+│   ├── __init__.py
+│   ├── unit/
+│   │   ├── test_execution.py a
+│   │   ├── test_pricing.py a
+│   │   └── test_risk.py a
+│   └── integration/
+│       ├── test_strategies.py a
+│       └── test_backtest.py a
+│
+├── scripts/
+│   ├── setup_environment.sh a
+│   └── update_config.py a
+│
+├── data/
+│   ├── historical/
+│   └── outputs/
+│
+├── .env.example a
+├── requirements.txt
+├── setup.py a
+└── README.md a

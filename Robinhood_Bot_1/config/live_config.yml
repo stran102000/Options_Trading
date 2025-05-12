@@ -1,0 +1,45 @@
+# Execution Settings
+execution:
+  auto_place_trades: false
+  confirm_before_trade: true
+  max_slippage: 0.01  # 1%
+
+# Risk Parameters
+risk:
+  max_portfolio_risk: 0.05  # 5%
+  max_position_risk: 0.02   # 2%
+  daily_loss_limit: 0.1     # 10%
+  sector_limits:
+    technology: 0.3
+    healthcare: 0.2
+
+# Strategies
+strategies:
+  iron_condor:
+    enabled: true
+    width_percent: 0.05
+    min_credit: 1.00
+    max_dte: 45
+  
+  iron_butterfly:
+    enabled: true
+    width_percent: 0.02
+    min_credit: 0.80
+    max_dte: 30
+
+# Pricing Models
+pricing:
+  default_model: "quasi_monte_carlo"
+  qmc:
+    simulations: 10000
+    scramble: true
+  binomial:
+    steps: 100
+  finite_difference:
+    grid_points: 1000
+
+# Logging
+logging:
+  level: "INFO"
+  file: "logs/bot.log"
+  max_size: 10  # MB
