@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@blueprintjs/core": "^5.19.0",
+    "@blueprintjs/icons": "^5.22.0",
+    "axios": "^1.9.0",
+    "recharts": "^2.15.3"
+  }
+}

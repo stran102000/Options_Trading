@@ -416,17 +416,17 @@ def main():
                     print("\nNo bullish put signals found.")
 
                 #Update call options plot for visual reference
-                if not calls.empty:
-                    ax.cla()
-                    ax.plot(calls.index, calls['lastPrice'], marker='o', label='Last Price')
-                    ax.plot(calls.index, calls['SMA'], marker='x', label='SMA')
-                    ax.set_xlabel('Option Index')
-                    ax.set_ylabel('Price')
-                    ax.set_title('Last Price vs SMA for Options')
-                    ax.legend()
-                    ax.grid(True)
-                    plt.draw()
-                    plt.pause(0.1)
+                # if not calls.empty:
+                #     ax.cla()
+                #     ax.plot(calls.index, calls['lastPrice'], marker='o', label='Last Price')
+                #     ax.plot(calls.index, calls['SMA'], marker='x', label='SMA')
+                #     ax.set_xlabel('Option Index')
+                #     ax.set_ylabel('Price')
+                #     ax.set_title('Last Price vs SMA for Options')
+                #     ax.legend()
+                #     ax.grid(True)
+                #     plt.draw()
+                #     plt.pause(0.1)
 
         print("-" * 40)
         #Pause for 60 seconds before next update
