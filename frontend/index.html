@@ -7,17 +7,55 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Options Trading Analysis Tool</h1>
-        <form id="options-form">
-            <label for="tickers">Ticker Symbols (comma separated):</label>
-            <input type="text" id="tickers" name="tickers" placeholder="AAPL, AMZN, TGT, TSLA">
-            <label for="expiration">Expiration Date (YYYY-MM-DD, optional):</label>
-            <input type="text" id="expiration" name="expiration" placeholder="Leave blank for auto">
-            <button type="submit">Analyze</button>
-        </form>
-        <div id="results"></div>
-        <canvas id="chart" width="800" height="400"></canvas>
+    <div class="dashboard-root">
+        <header class="app-header">
+            <div class="app-title">Options Trading Analysis</div>
+            <div class="header-actions">
+                <button id="toggle-chart-btn" title="Hide/Show chart">📉</button>
+                <button id="expand-chart-btn" title="Expand chart fullscreen">⛶</button>
+                <button id="refresh-btn" title="Re-run last query">⟳</button>
+            </div>
+        </header>
+        <div class="dashboard-body">
+            <aside class="sidebar">
+                <form id="options-form" class="form-panel">
+                    <div class="form-group">
+                        <label for="tickers">Tickers</label>
+                        <input type="text" id="tickers" name="tickers" placeholder="AAPL, AMZN, TGT, TSLA">
+                    </div>
+                    <div class="form-group">
+                        <label for="expiration">Expiration (YYYY-MM-DD)</label>
+                        <input type="text" id="expiration" name="expiration" placeholder="Auto-select if blank">
+                    </div>
+                    <div class="form-row-inline">
+                        <button type="submit" class="primary-btn">Analyze</button>
+                        <button type="button" id="clear-btn" class="secondary-btn">Clear</button>
+                    </div>
+                    <div class="quick-actions-grid" id="quick-actions" aria-label="Quick ticker actions">
+                        <div class="qa-card" data-tickers="AAPL"><span>AAPL</span></div>
+                        <div class="qa-card" data-tickers="MSFT"><span>MSFT</span></div>
+                        <div class="qa-card" data-tickers="NVDA"><span>NVDA</span></div>
+                        <div class="qa-card" data-tickers="TSLA"><span>TSLA</span></div>
+                        <div class="qa-card" data-tickers="AMZN"><span>AMZN</span></div>
+                        <div class="qa-card" data-tickers="META"><span>META</span></div>
+                        <div class="qa-card" data-tickers="GOOGL"><span>GOOGL</span></div>
+                        <div class="qa-card" data-tickers="SPY"><span>SPY</span></div>
+                        <div class="qa-card" data-tickers="QQQ"><span>QQQ</span></div>
+                        <div class="qa-card" data-tickers="IWM"><span>IWM</span></div>
+                    </div>
+                    <div class="hints">
+                        <p><strong>Tip:</strong> Leave expiration blank to auto-pick a date 7–60 days out.</p>
+                    </div>
+                </form>
+            </aside>
+            <main class="main-content">
+                <section class="chart-section" id="chart-section">
+                    <canvas id="chart"></canvas>
+                </section>
+                <div id="drag-separator" class="drag-separator" title="Drag to resize"></div>
+                <section id="results" class="results-section"></section>
+            </main>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="app.js"></script>
