@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Options Trading Analysis Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Options Trading Analysis Tool</h1>
+        <form id="options-form">
+            <label for="tickers">Ticker Symbols (comma separated):</label>
+            <input type="text" id="tickers" name="tickers" placeholder="AAPL, AMZN, TGT, TSLA">
+            <label for="expiration">Expiration Date (YYYY-MM-DD, optional):</label>
+            <input type="text" id="expiration" name="expiration" placeholder="Leave blank for auto">
+            <button type="submit">Analyze</button>
+        </form>
+        <div id="results"></div>
+        <canvas id="chart" width="800" height="400"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

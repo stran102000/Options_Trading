@@ -1,0 +1,82 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6fa;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 32px 40px 40px 40px;
+}
+h1 {
+    text-align: center;
+    color: #2d3a4b;
+    margin-bottom: 32px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+label {
+    font-weight: 500;
+    color: #2d3a4b;
+}
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #cfd8dc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+button {
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+button:hover {
+    background: #1565c0;
+}
+#results {
+    margin-bottom: 32px;
+}
+#results .ticker-result {
+    background: #f1f8e9;
+    border-left: 4px solid #43a047;
+    margin-bottom: 18px;
+    padding: 16px 20px;
+    border-radius: 6px;
+}
+#results .ticker-result h2 {
+    margin-top: 0;
+    color: #388e3c;
+}
+#results .option-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+#results .option-table th, #results .option-table td {
+    border: 1px solid #cfd8dc;
+    padding: 8px 10px;
+    text-align: center;
+}
+#results .option-table th {
+    background: #e3f2fd;
+}
+#chart {
+    display: block;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
